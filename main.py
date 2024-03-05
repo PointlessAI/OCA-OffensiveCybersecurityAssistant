@@ -21,7 +21,7 @@ def generate_response(user_input, chat_history):
     return chat_history, assistant_response
 
 def start_chat():
-    input_type = input("[T]erminal assistant (T) or [G]eneral assistant (G)?")
+    input_type = input("[T]erminal assistant (T) or [G]eneral assistant (G): ")
     if(input_type.lower() == "t"): print("Shell is ready my Lord")
     else: print("How may I be of assistance?")
     chat_history_terminal = [
@@ -48,11 +48,19 @@ def start_chat():
     while True:
         if(input_type.lower() == "t"):
             user_input = input("Your command Sire: ")
+            if user_input.lower() == 'exit':
+                print("I will take my leave Sire.")
+                break
             chat_history_terminal, assistant_response = generate_response(user_input, chat_history_terminal)
-            ex_command = os.system(assistant_response)
-            print(ex_command)
+            ex_input = input("Shell command: " + assistant_response + " - [E]xecute? E or e: ")
+            if(ex_input.lower() == "e"):
+                ex_command = os.system(assistant_response)
+            else: exit
         else:
              user_input = input("Your request my Liege: ")
+             if user_input.lower() == 'exit':
+                print("It has been an honour to serve.")
+                break
              chat_history_general, assistant_response = generate_response(user_input, chat_history_general)
 
         print(assistant_response)
