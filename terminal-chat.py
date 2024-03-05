@@ -1,34 +1,29 @@
+#Script remembers chat history in the terminal
 from openai import OpenAI
-
 client = OpenAI()
 
-def chat_with_gpt(prompt, engine="gpt-3.5-turbo"):
-    try:
-        response = client.chat.completions.create(
-            model="gpt-3.5-turbo",
-            messages=[
-                        {"role": "system", "content": "You are a cybersecurity assistant"},
-                        {"role": "user", "content": prompt}
-                    ],
-            max_tokens=500,
-            n=1,
-            stop=None,
-            temperature=0.2
-        )
-        return response.choices[0].message.content.strip()
-    except Exception as e:
-        return f"An error occurred: {str(e)}"
+def generate_response(user_input, chat_history):
+    chat_history.append({"role": "user", "content": user_input})
+    
+    response = client.chat.completions.create(
+        model="gpt-3.5-turbo",
+        messages=chat_history
+    )
+    
+    assistant_response = response.choices[0].message.content
+    chat_history.append({"role": "assistant", "content": assistant_response})
+    
+    return chat_history, assistant_response
 
 def start_chat():
-    print("Welcome to ChatGPT Chat! Type 'exit' to quit.")
+    chat_history = [
+        {"role": "system", "content": "You are a helpful assistant."}
+    ]
+    print("General chat that remembers history")
     while True:
-        user_input = input("You: ")
-        if user_input.lower() == 'exit':
-            print("Exiting chat. Goodbye!")
-            break
-
-        response = chat_with_gpt(user_input)
-        print(f"GPT: {response}")
+        user_input = input("Response: ")
+        chat_history, assistant_response = generate_response(user_input, chat_history)
+        print("Assistant:", assistant_response)
 
 if __name__ == "__main__":
     start_chat()
