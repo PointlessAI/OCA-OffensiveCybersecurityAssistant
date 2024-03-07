@@ -57,6 +57,7 @@ class Oca:
 
     def start_chat(self):
         input_type = input("\n***Welcome to OCA - Offensive Cybersecurity Assistant.***\nType [T]erminal assistant (t) or [G]eneral assistant (g): ")
+        if (input_type.lower() == "h"): print ("\n[H]elp - h\n[E]xit - e\n[T]erminal assistant - t\n[G]eneral assistant - g\n")
         if(input_type.lower() == "t"): print("Shell is ready my Lord")
         else: print("I live to serve.")
         chat_history_terminal = [
@@ -75,7 +76,7 @@ class Oca:
         while True:
             if(input_type.lower() == "t"):
                 user_input = input("Your command Sire: ")
-                if user_input.lower() == 'exit':
+                if user_input.lower() == 'e':
                     print("I will take my leave Sire.")
                     break
 
@@ -89,16 +90,17 @@ class Oca:
                     ex_input = input("Shell command: " + clean_response + " [E]xecute? E or e | [A]bort A or a: ")
                 else: 
                     ex_input = "e"
-                    print("Shell command: " + clean_response) 
+                print("Shell command: " + clean_response) 
                 if(ex_input.lower() == "e"): # Execute command in terminal:
                     try:
-                        subprocess.run(
-                                        ["bash", "-c", clean_response], 
-                                        #stdout=subprocess.PIPE,
-                                        shell=False, 
-                                        text=True,
-                                        check=True
-                                    )
+                        process = subprocess.Popen(["bash", "-c", clean_response], text=True)
+                        try:
+                            # Wait for the process to complete, or a timeout (in seconds)
+                            stderr = process.communicate(timeout=10)
+                        except subprocess.TimeoutExpired:
+                            print("Process timed out. It will be terminated.")
+                            process.kill()
+                            stderr = process.communicate()
                     except FileNotFoundError as exc:
                         print(f"Process failed because the executable could not be found.\n{exc}")
                     except KeyboardInterrupt:
@@ -113,23 +115,23 @@ class Oca:
                                     # If the command was successful, print the output
                                     print("Command failed, trying as sudo.....")
                                     print(f"Command output: {result.stdout}")
-                                except subprocess.CalledProcessError as e:
+                                except subprocess.CalledProcessError as exc:
                                     guidance_required = input("Command failed or was aborted.\nDo you require [A]ssistance with this error?\nA or a or [I]gnore I or i: ")
                                     if(guidance_required.lower() == "a"):
                                         # Optional call to chatGPT to get help with any errors
                                         print( self.explain_error("The terminal shell command: " + user_input + " was not found. Guess what " + self.curEnv + " command I actually wanted, and suggest the correct shell command."))
                                     else: continue
                                     # If an error occurs, print the error
-                                    print(f"Error executing command: {e.stderr}")
+                                    print(f"Error executing command: {exc.stderr}")
                                 except Exception as e:
                                     # Handle other possible exceptions
-                                    print(f"An error occurred: {e}")
+                                    print(f"An error occurred: {exc}")
                     except subprocess.TimeoutExpired as exc:
                         print(f"Process timed out.\n{exc}")
                 else: continue
             else:
                 user_input = input("Your request my Liege: ")
-                if user_input.lower() == 'exit':
+                if user_input.lower() == 'e':
                     print("It has been an honour to serve.")
                     break
                 chat_history_general, assistant_response = self.generate_response(user_input, chat_history_general)
