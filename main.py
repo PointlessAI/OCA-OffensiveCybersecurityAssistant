@@ -81,9 +81,10 @@ class Oca:
                 self.cleanInput = getCleanInput.sanitize_text(assistant_response) # Call sanitize method on object
                 clean_response = self.cleanInput
 
-                if(clean_response.startswith("Sudo") or clean_response.count("install") > 0): # Execute prompt if sudo or install command only
+                if(clean_response.startswith("Sudo") or clean_response.count("install") > 0 or "^" in clean_response): # Execute prompt if sudo or install command only
                     ex_input = input("Shell command: " + clean_response + " - [E]xecute? E or e | [A]bort A or a: ")
                 else: ex_input = "e"
+                print("Shell command is: " + clean_response) 
                 if(ex_input.lower() == "e"): # Execute command in terminal:
                     try:
                         subprocess.run(
