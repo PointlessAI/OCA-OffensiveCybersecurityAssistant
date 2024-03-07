@@ -12,9 +12,7 @@
 ![ChatGPT Terminal Assistant](https://github.com/PointlessAI/ChatGPT-TerminalAssistant/blob/main/Img/shell.png)
 * General assistant
 ![ChatGPT Terminal Assistant](https://github.com/PointlessAI/ChatGPT-TerminalAssistant/blob/main/Img/chat.png)
-* Network scanning
-![ChatGPT Terminal Assistant](https://github.com/PointlessAI/ChatGPT-TerminalAssistant/blob/main/Img/nmap.png)
-* Application vulnerabilities
+* Network & vulnerability scanning
 ![ChatGPT Terminal Assistant](https://github.com/PointlessAI/ChatGPT-TerminalAssistant/blob/main/Img/nikto.png)
 * Brute forcing
 ![ChatGPT Terminal Assistant](https://github.com/PointlessAI/ChatGPT-TerminalAssistant/blob/main/Img/hydra.png)
