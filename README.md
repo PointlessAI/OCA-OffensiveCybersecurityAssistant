@@ -8,15 +8,15 @@
 
 **Warning:** These scripts are under development and may contain bugs or security issues. Please use responsibly.
 
-Terminal commands
+* Terminal commands
 ![ChatGPT Terminal Assistant](https://github.com/PointlessAI/ChatGPT-TerminalAssistant/blob/main/Img/shell.png)
-General assistant
+* General assistant
 ![ChatGPT Terminal Assistant](https://github.com/PointlessAI/ChatGPT-TerminalAssistant/blob/main/Img/chat.png)
-Network scanning
+* Network scanning
 ![ChatGPT Terminal Assistant](https://github.com/PointlessAI/ChatGPT-TerminalAssistant/blob/main/Img/nmap.png)
-Application vulnerabilities
+* Application vulnerabilities
 ![ChatGPT Terminal Assistant](https://github.com/PointlessAI/ChatGPT-TerminalAssistant/blob/main/Img/nikto.png)
-Brute forcing
+* Brute forcing
 ![ChatGPT Terminal Assistant](https://github.com/PointlessAI/ChatGPT-TerminalAssistant/blob/main/Img/hydra.png)
 
 
