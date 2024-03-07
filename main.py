@@ -1,5 +1,6 @@
 # OCA - Offensive Cybersecurity Assistant
 from openai import OpenAI
+import os
 import subprocess
 import sys
 import re
@@ -12,6 +13,7 @@ class Oca:
 
         getCurEnv = GetEnvironmentMeta()
         self.curEnv = getCurEnv.cur_env_meta()
+
 
     def explain_error(self, error_message):
             shell_error_message = [
@@ -53,10 +55,8 @@ class Oca:
         
         return chat_history, assistant_response
 
-    def start_chat(self, chat_type):
-        if(chat_type == 0):
-            input_type = input("\n***Welcome to OCA - Offensive Cybersecurity Assistant.***\nType [T]erminal assistant (t) or [G]eneral assistant (g) at any time to switch: ")
-        else: input_type = chat_type
+    def start_chat(self):
+        input_type = input("\n***Welcome to OCA - Offensive Cybersecurity Assistant.***\nType [T]erminal assistant (t) or [G]eneral assistant (g): ")
         if(input_type.lower() == "t"): print("Shell is ready my Lord")
         else: print("I live to serve.")
         chat_history_terminal = [
@@ -78,9 +78,6 @@ class Oca:
                 if user_input.lower() == 'exit':
                     print("I will take my leave Sire.")
                     break
-                if user_input.lower() == 'g':
-                    print("Switching to General assistant.")
-                    oca.start_chat("g")
 
                 chat_history_terminal, assistant_response = self.generate_response(user_input, chat_history_terminal)
 
@@ -90,8 +87,9 @@ class Oca:
 
                 if(clean_response.startswith("Sudo") or clean_response.count("install") > 0 or "^" in clean_response): # Execute prompt if sudo or install command only
                     ex_input = input("Shell command: " + clean_response + " [E]xecute? E or e | [A]bort A or a: ")
-                else: ex_input = "e"
-                print("Shell command is: " + clean_response) 
+                else: 
+                    ex_input = "e"
+                    print("Shell command: " + clean_response) 
                 if(ex_input.lower() == "e"): # Execute command in terminal:
                     try:
                         subprocess.run(
@@ -107,14 +105,25 @@ class Oca:
                         print("Manual abort detected. Cleaning up...")
                         sys.exit(0)
                     except subprocess.CalledProcessError as exc:
-                        print(
-                            f"Error: {exc}"
-                        )
-                        guidance_required = input("Command failed or was aborted.\nDo you require [A]ssistance with this error?\nA or a or [I]gnore I or i: ")
-                        if(guidance_required.lower() == "a"):
-                            # Optional call to chatGPT to get help with any errors
-                            print( self.explain_error("The terminal shell command: " + user_input + " was not found. Guess what " + self.curEnv + " command I actually wanted, and suggest the correct shell command."))
-                        else: continue
+                                try:
+                                    # Prepend 'sudo' to the original command
+                                    sudo_command = ['sudo'] + clean_response.split()
+                                    # Execute the command with sudo
+                                    result = subprocess.run(sudo_command, check=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
+                                    # If the command was successful, print the output
+                                    print("Command failed, trying as sudo.....")
+                                    print(f"Command output: {result.stdout}")
+                                except subprocess.CalledProcessError as e:
+                                    guidance_required = input("Command failed or was aborted.\nDo you require [A]ssistance with this error?\nA or a or [I]gnore I or i: ")
+                                    if(guidance_required.lower() == "a"):
+                                        # Optional call to chatGPT to get help with any errors
+                                        print( self.explain_error("The terminal shell command: " + user_input + " was not found. Guess what " + self.curEnv + " command I actually wanted, and suggest the correct shell command."))
+                                    else: continue
+                                    # If an error occurs, print the error
+                                    print(f"Error executing command: {e.stderr}")
+                                except Exception as e:
+                                    # Handle other possible exceptions
+                                    print(f"An error occurred: {e}")
                     except subprocess.TimeoutExpired as exc:
                         print(f"Process timed out.\n{exc}")
                 else: continue
@@ -123,12 +132,9 @@ class Oca:
                 if user_input.lower() == 'exit':
                     print("It has been an honour to serve.")
                     break
-                if user_input.lower() == 't':
-                    print("Switching to Terminal assistant")
-                    oca.start_chat("t")
                 chat_history_general, assistant_response = self.generate_response(user_input, chat_history_general)
                 print(assistant_response)
 
 if __name__ == "__main__":
     oca = Oca()
-    oca.start_chat(0)
+    oca.start_chat()
