@@ -1,5 +1,6 @@
 # OCA - Offensive Cybersecurity Assistant
 # ChatGPT API Terminal Assistant with a good memory to be used in ethical hacking
+**Warning:** These scripts are for training purposes to accompany a training course. Do not use on real applications without explicit permissions.
 ## To run, clone then cd to dir, then execute main.py
 ## Run [T]erminal commands using 't' or [G]eneral chat using 'g' or [C]onsultant using 'c'
 ## In terminal: export OPENAI_API_KEY=[OPENAI API KEY]
@@ -17,13 +18,14 @@ Utilize the general assistant to gain a high-level understanding of ethical hack
 ## 2. Red Team Assistant for Detailed Consultation on Offensive Security Methods
 Engage the red team assistant for in-depth consultations regarding offensive security methods. This step involves acquiring detailed insights and strategic guidance to enhance offensive security skills.
 
-## 3. Terminal Assistant to Execute Attacks
+## 3. Terminal Assistant to Execute Attacks - STRICTLY FOR THE PURPOSE OF LEARNING.
+**Warning:** These scripts are for training purposes to accompany a training course. Do not use on real applications without explicit permissions.
 Leverage the terminal assistant for hands-on experience in executing ethical hacking attacks. This phase involves practical application, allowing you to implement the learned concepts in a real-world environment.
 
 * Switching between assistants.
 ![ChatGPT Terminal Assistant](https://github.com/PointlessAI/ChatGPT-TerminalAssistant/blob/main/Img/assistants.png)
 
-Note: Ensure that ethical hacking practices are conducted responsibly and legally, adhering to ethical standards and applicable laws.
+**Warning:** Ensure that ethical hacking practices are conducted responsibly and legally, adhering to ethical standards and applicable laws.
 
 # Screenshots
 * Network & vulnerability scanning
