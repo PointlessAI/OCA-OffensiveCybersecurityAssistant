@@ -60,11 +60,11 @@ class Oca:
         print("Welcome to OCA - Offensive Cybersecurity Assistant.\nType [T]erminal assistant (t) or [G]eneral assistant (g) or [C]onsultant (c): at any time to switch assistants.")
         input_type = chat_type
         if (input_type.lower() == "h"): print ("\n[H]elp - h\n[E]xit - e\n[T]erminal assistant - t\n[G]eneral assistant - g\n[C]onsultant (c)")
-        if(input_type.lower() == "t"): print("Terminal Assistant Selected. Tell the terminal what to do.")
-        elif(input_type.lower() == "g"): print("General assistant Selected. Ask me anything.")
-        elif(input_type.lower() == "c"): print("Red Team Consultant Selected. I provide detailed cybersecurity consultation.")
+        if(input_type.lower() == "t"): print("----------------------------------------------------------\nTerminal Assistant Selected. Tell the terminal what to do.\n----------------------------------------------------------")
+        elif(input_type.lower() == "g"): print("----------------------------------------------------------\nGeneral assistant Selected. Ask me anything.\n----------------------------------------------------------")
+        elif(input_type.lower() == "c"): print("----------------------------------------------------------\nRed Team Consultant Selected. I provide detailed cybersecurity consultation.\n----------------------------------------------------------")
         else:
-            print("Terminal Assistant Selected.") 
+            print("----------------------------------------------------------\nTerminal Assistant Selected. Tell the terminal what to do.\n----------------------------------------------------------") 
             input_type = "t"
 
         chat_history_terminal = []
