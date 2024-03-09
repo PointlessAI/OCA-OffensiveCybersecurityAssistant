@@ -26,12 +26,10 @@ Note: Ensure that ethical hacking practices are conducted responsibly and legall
 # Screenshots
 * Terminal commands
 ![ChatGPT Terminal Assistant](https://github.com/PointlessAI/ChatGPT-TerminalAssistant/blob/main/Img/shell.png)
-* General assistant
-![ChatGPT Terminal Assistant](https://github.com/PointlessAI/ChatGPT-TerminalAssistant/blob/main/Img/chat.png)
 * Network & vulnerability scanning
 ![ChatGPT Terminal Assistant](https://github.com/PointlessAI/ChatGPT-TerminalAssistant/blob/main/Img/nikto.png)
 * Brute forcing
 ![ChatGPT Terminal Assistant](https://github.com/PointlessAI/ChatGPT-TerminalAssistant/blob/main/Img/hydra.png)
-
-
+* SQL injection
+![ChatGPT Terminal Assistant](https://github.com/PointlessAI/ChatGPT-TerminalAssistant/blob/main/Img/sqlinjection.png)
 
