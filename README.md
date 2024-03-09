@@ -53,7 +53,9 @@ Note: Ensure that ethical hacking practices are conducted responsibly and legall
 
 7. **Alternative View**: While Selenium is powerful for web automation, it can be detected by sophisticated websites that implement bot detection mechanisms. Alternatives like Puppeteer, which controls headless Chrome or Chromium, might be less detectable in some cases.
 
-8. **Raw Shell Command**: Assuming you're using Python, first ensure you have Python and pip installed, then install Selenium using pip:
+8. **Red Team Expert Suggestions**: When using Selenium for red teaming, consider rotating user agents and using proxy servers to mimic real user behavior and avoid detection. Also, leverage Selenium's ability to execute JavaScript to test for XSS vulnerabilities or to perform actions that require client-side scripting. Always ensure your actions are authorized and ethical.
+
+9. **Raw Shell Command**: Assuming you're using Python, first ensure you have Python and pip installed, then install Selenium using pip:
    ```bash
    pip install selenium
 
@@ -64,7 +66,5 @@ from selenium import webdriver
 
 driver = webdriver.Chrome()  # or webdriver.Firefox(), etc.
 driver.get("http://www.example.com")
-
-    Red Team Expert Suggestions: When using Selenium for red teaming, consider rotating user agents and using proxy servers to mimic real user behavior and avoid detection. Also, leverage Selenium's ability to execute JavaScript to test for XSS vulnerabilities or to perform actions that require client-side scripting. Always ensure your actions are authorized and ethical.
 
 
