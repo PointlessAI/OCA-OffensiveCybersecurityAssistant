@@ -10,7 +10,7 @@
 
 # Workflow
 
-![ChatGPT Terminal Assistant](https://github.com/PointlessAI/ChatGPT-TerminalAssistant/blob/main/Img/hydra.png)
+![ChatGPT Terminal Assistant](https://github.com/PointlessAI/ChatGPT-TerminalAssistant/blob/main/Img/workflow.png)
 
 ## 1. General Assistant for High-Level Learning of Ethical Hacking
 Utilize the general assistant to gain a high-level understanding of ethical hacking concepts. This phase focuses on foundational knowledge and broad insights into ethical hacking practices.
