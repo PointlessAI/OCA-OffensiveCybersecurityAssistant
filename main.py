@@ -56,14 +56,15 @@ class Oca:
         
         return chat_history, assistant_response
 
-    def start_chat(self):
-        input_type = input("\n***Welcome to OCA - Offensive Cybersecurity Assistant.***\nType [T]erminal assistant (t) or [G]eneral assistant (g) or [C]onsultant (c): ")
+    def start_chat(self,chat_type):
+        print("Welcome to OCA - Offensive Cybersecurity Assistant.\nType [T]erminal assistant (t) or [G]eneral assistant (g) or [C]onsultant (c): at any time to switch assistants.")
+        input_type = chat_type
         if (input_type.lower() == "h"): print ("\n[H]elp - h\n[E]xit - e\n[T]erminal assistant - t\n[G]eneral assistant - g\n[C]onsultant (c)")
-        if(input_type.lower() == "t"): print("Terminal Assistant\nShell is ready my Lord")
-        elif(input_type.lower() == "g"): print("General assistant. How may I assist you Sire")
-        elif(input_type.lower() == "c"): print("Red Team Consultant. I provide detailed cybersecurity consultation.")
+        if(input_type.lower() == "t"): print("Terminal Assistant Selected. Tell the terminal what to do.")
+        elif(input_type.lower() == "g"): print("General assistant Selected. Ask me anything.")
+        elif(input_type.lower() == "c"): print("Red Team Consultant Selected. I provide detailed cybersecurity consultation.")
         else:
-            print("Shell is ready my Lord") 
+            print("Terminal Assistant Selected.") 
             input_type = "t"
 
         chat_history_terminal = []
@@ -112,10 +113,14 @@ class Oca:
 
         while True:
             if(input_type.lower() == "t"):
-                user_input = input("Your orders Sire?: ")
+                user_input = input("Your command Sire?: ")
                 if user_input.lower() == 'e' or user_input.lower() == 'q' or user_input.lower() == 'exit':
                     print("I will take my leave Sire.")
                     break
+                if user_input.lower() == 'g':
+                    oca_gen.start_chat("g")
+                if user_input.lower() == 'c':
+                    oca_con.start_chat("c")
 
                 chat_history_terminal, assistant_response = self.generate_response(user_input, chat_history_terminal)
 
@@ -165,6 +170,10 @@ class Oca:
                 if user_input.lower() == 'e' or user_input.lower() == 'q' or user_input.lower() == 'exit':
                     print("It has been an honour to serve.")
                     break
+                if user_input.lower() == 't':
+                    oca_term.start_chat("t")
+                if user_input.lower() == 'c':
+                    oca_con.start_chat("c")
                 chat_history_general, assistant_response = self.generate_response(user_input, chat_history_general)
                 print(assistant_response)
             elif(input_type.lower() == "c"):
@@ -172,10 +181,15 @@ class Oca:
                 if user_input.lower() == 'e' or user_input.lower() == 'q' or user_input.lower() == 'exit':
                     print("My usefulness is at an end.")
                     break
+                if user_input.lower() == 't':
+                    oca_term.start_chat(("t"))
+                if user_input.lower() == 'g':
+                    oca_gen.start_chat("g")
                 chat_history_consultant, assistant_response = self.generate_response(user_input, chat_history_consultant)
-                print("Patience my Lord, we will find the answers you seek....")
                 print(assistant_response)
 
 if __name__ == "__main__":
-    oca = Oca()
-    oca.start_chat()
+    oca_term = Oca()
+    oca_gen = Oca()
+    oca_con = Oca()
+    oca_term.start_chat("t")
