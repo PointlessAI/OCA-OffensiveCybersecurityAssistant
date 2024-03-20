@@ -27,6 +27,9 @@ Leverage the terminal assistant for hands-on experience in executing ethical hac
 
 **Warning:** Ensure that ethical hacking practices are conducted responsibly and legally, adhering to ethical standards and applicable laws.
 
+# Video
+[![Video Title](https://img.youtube.com/vi/ZIfdgZcxkRg/maxresdefault.jpg)](https://youtu.be/ZIfdgZcxkRg)
+
 # Screenshots
 * Network & vulnerability scanning
 ![ChatGPT Terminal Assistant](https://github.com/PointlessAI/ChatGPT-TerminalAssistant/blob/main/Img/nikto.png)
@@ -34,6 +37,9 @@ Leverage the terminal assistant for hands-on experience in executing ethical hac
 ![ChatGPT Terminal Assistant](https://github.com/PointlessAI/ChatGPT-TerminalAssistant/blob/main/Img/hydra.png)
 * SQL injection
 ![ChatGPT Terminal Assistant](https://github.com/PointlessAI/ChatGPT-TerminalAssistant/blob/main/Img/sqlinjection.png)
+
+# Bug reporting
+**Contact@pointlessai.com**
 
 # Example of Red Team [C]onsultant output:
 
